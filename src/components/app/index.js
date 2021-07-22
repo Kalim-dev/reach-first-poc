@@ -9,7 +9,7 @@ const MainApp = () => {
         <Route path={"/api"} exact>
           Here show APIS calls componenets
         </Route>
-        <Route path={"/jobs"} exact>
+        <Route path={"/jobs"}>
           <Jobs />
         </Route>
         <Redirect from="/" to="/jobs" />
