@@ -1,5 +1,7 @@
+import jobs from "utils/jobs.json";
+
 const initState = {
-  data: [],
+  jobs,
 };
 
 const dataReducer = (state = initState, action) => {

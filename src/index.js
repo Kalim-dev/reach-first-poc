@@ -4,14 +4,17 @@ import "antd/dist/antd.css";
 import App from "components/app";
 import reportWebVitals from "./reportWebVitals";
 import { Provider as StateProvider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
 import store from "app-redux";
 
-import "./index.css";
+import "./index.scss";
 
 ReactDOM.render(
   <React.StrictMode>
     <StateProvider store={store}>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </StateProvider>
   </React.StrictMode>,
   document.getElementById("root")
