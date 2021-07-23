@@ -1,4 +1,5 @@
 import { Redirect, Route, Switch, useRouteMatch } from "react-router-dom";
+import CreateJob from "./create";
 import JobsMain from "./main";
 
 const Jobs = () => {
@@ -9,7 +10,7 @@ const Jobs = () => {
   return (
     <Switch>
       <Route path={`${path}/create/:id(1|2|3)`} exact>
-        Create JOBs
+        <CreateJob />
       </Route>
 
       <Route path={`${path}`} exact>
