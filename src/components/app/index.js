@@ -1,3 +1,4 @@
+import ApiCallDemo from "components/api-call-demo";
 import MainLayout from "components/common/layout";
 import Jobs from "components/jobs";
 import { Redirect, Route, Switch } from "react-router-dom";
@@ -7,7 +8,7 @@ const MainApp = () => {
     <MainLayout>
       <Switch>
         <Route path={"/api"} exact>
-          Here show APIS calls componenets
+          <ApiCallDemo />
         </Route>
         <Route path={"/jobs"} exact>
           <Jobs />

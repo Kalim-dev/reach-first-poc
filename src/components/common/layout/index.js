@@ -39,7 +39,7 @@ export const MainLayout = ({ children }) => {
         <div className="app-layout">{children}</div>
       </Content>
       <Footer style={{ textAlign: "center" }}>
-        Ant Design ©2018 Created by Ant UED
+        POC Interview Task created by Kalim Ullah | javascript developer....
       </Footer>
     </Layout>
   );
