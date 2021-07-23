@@ -11,6 +11,7 @@
     min-width: 60em;
     border-radius: 8px;
     padding: 1em 2em;
+
     .card-header {
       padding: 8px;
       display: flex;
@@ -77,7 +78,7 @@
         padding-top: 16px;
       }
 
-      .ant-form-item {
+      .ant-form-item.reach-form-item {
         position: relative;
         .ant-form-item-label {
           position: absolute;

@@ -6,6 +6,7 @@ const FirstStepForm = ({ form }) => {
       <Row gutter={32} className="reach-row">
         <Col span={12}>
           <Form.Item
+            className="reach-form-item"
             label="Looking For"
             name="job_title"
             rules={[{ required: true, message: "Job title is required" }]}
@@ -18,6 +19,7 @@ const FirstStepForm = ({ form }) => {
         </Col>
         <Col span={12}>
           <Form.Item
+            className="reach-form-item"
             label="Experience"
             name="experience"
             rules={[{ required: true, message: "Experience is required" }]}
@@ -30,6 +32,7 @@ const FirstStepForm = ({ form }) => {
       <Row gutter={32} className="reach-row">
         <Col span={12}>
           <Form.Item
+            className="reach-form-item"
             label="Education"
             name="education"
             rules={[{ required: true, message: "Education is required!" }]}
@@ -42,6 +45,7 @@ const FirstStepForm = ({ form }) => {
       <Row gutter={32} className="reach-row">
         <Col span={24}>
           <Form.Item
+            className="reach-form-item"
             label="Skills"
             name="skills"
             rules={[{ required: true, message: "Skills required" }]}
@@ -53,6 +57,7 @@ const FirstStepForm = ({ form }) => {
       <Row gutter={32} className="reach-row">
         <Col span={24}>
           <Form.Item
+            className="reach-form-item"
             label="Description"
             name="description"
             rules={[{ required: true, message: "Description is required" }]}
@@ -67,7 +72,7 @@ const FirstStepForm = ({ form }) => {
       </Row>
       <Row gutter={32} className="reach-row">
         <Col span={24}>
-          <Form.Item name="template">
+          <Form.Item className="reach-form-item" name="template">
             <Input
               type="file"
               className="file-upload"

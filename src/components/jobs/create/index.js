@@ -1,13 +1,16 @@
 import { Card, Button, Form } from "antd";
-import { setJobStep } from "app-redux/actions/job";
+import { setJob, setJobStep } from "app-redux/actions/job";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, Route, Switch, useHistory, useParams } from "react-router-dom";
 import FirstStepForm from "./first-step";
 
-import "./index.scss";
 import SecondStepForm from "./second-step";
+
 import ThirdStepForm from "./third-step";
+
+import "./index.scss";
+import moment from "moment";
 
 const stepsValues = {
   1: "first",
@@ -25,7 +28,7 @@ const CreateJob = () => {
 
   useEffect(() => {
     setStep(stepsValues[id]);
-  }, [id]);
+  }, [id, history]);
 
   useEffect(() => {
     if (step) {
@@ -33,24 +36,24 @@ const CreateJob = () => {
     }
   }, [step, form, job]);
 
-  const renderForm = () => {
-    switch (id) {
-      case "1":
-        return <FirstStepForm form={form} />;
-      case "2":
-        return <SecondStepForm form={form} />;
-      case "3":
-        return <ThirdStepForm form={form} />;
-      default:
-        return <FirstStepForm form={form} />;
-    }
+  const formatTimes = (values) => {
+    return Object.keys(values).reduce((sum, key) => {
+      sum[key] = values[key].map((date) => moment(date).format("hh:mm"));
+      return sum;
+    }, {});
   };
 
   const onSubmit = async () => {
     try {
       const values = await form.validateFields();
-      dispatch(setJobStep(values, step));
-      history.push(`/jobs/create/${Number(id) + 1}`);
+      if (step === "third") {
+        dispatch(setJobStep(formatTimes(values), step));
+        dispatch(setJob());
+        history.push(`/jobs`);
+      } else {
+        dispatch(setJobStep(values, step));
+        history.push(`/jobs/create/${Number(id) + 1}`);
+      }
     } catch (error) {
       console.log("Validate Failed:", error);
     }
@@ -80,9 +83,21 @@ const CreateJob = () => {
           <div className={`${id === "3" && "active"}`}>Shift Timings</div>
         </div>
 
-        <div className="form-area">{renderForm()}</div>
+        <div className="form-area">
+          <Switch>
+            <Route path="/jobs/create/1">
+              <FirstStepForm form={form} />
+            </Route>
+            <Route path="/jobs/create/2">
+              <SecondStepForm form={form} />
+            </Route>
+            <Route path="/jobs/create/3">
+              <ThirdStepForm form={form} />
+            </Route>
+          </Switch>
+        </div>
         <div className="card-actions">
-          <Button size="large" className="card-btn">
+          <Button size="large" className="card-btn" disabled={Number(id) === 1}>
             <Link to={`/jobs/create/${Number(id) - 1}`}>PREVIOUS</Link>
           </Button>
           <Button

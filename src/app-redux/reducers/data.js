@@ -10,6 +10,7 @@ const dataReducer = (state = initState, action) => {
   switch (action.type) {
     case SET_JOB_STEP:
       const { step, data } = action.payload;
+
       return {
         ...state,
         job: {
@@ -26,11 +27,17 @@ const dataReducer = (state = initState, action) => {
         job: {},
       };
     case SET_JOB:
-      const newJobs = state.slice();
-      newJobs.unshif(action.payload);
+      const newJobs = state.jobs.slice();
+      const createdJob = {
+        ...(state.job.first || {}),
+        ...(state.job.second || {}),
+        shift_timings: state.job.third || {},
+      };
+      newJobs.unshift(createdJob);
       return {
         ...state,
         jobs: newJobs,
+        job: {},
       };
     default:
       return state;

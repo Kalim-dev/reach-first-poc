@@ -6,6 +6,7 @@ const SecondStepForm = ({ form }) => {
       <Row gutter={32} className="reach-row">
         <Col span={12}>
           <Form.Item
+            className="reach-form-item"
             label="Hourly Rate"
             name="hourly_rate"
             rules={[{ required: true, message: "Hourly rate is required" }]}
@@ -18,6 +19,7 @@ const SecondStepForm = ({ form }) => {
         </Col>
         <Col span={12}>
           <Form.Item
+            className="reach-form-item"
             label="Expected Start Date"
             name="start_date"
             rules={[{ required: true, message: "Start Date is required" }]}
@@ -33,6 +35,7 @@ const SecondStepForm = ({ form }) => {
       <Row gutter={32} className="reach-row">
         <Col span={12}>
           <Form.Item
+            className="reach-form-item"
             label="Career Level"
             name="career_+level"
             rules={[{ required: true, message: "Career Level is required!" }]}
@@ -45,6 +48,7 @@ const SecondStepForm = ({ form }) => {
         </Col>
         <Col span={12}>
           <Form.Item
+            className="reach-form-item"
             label="Gender"
             name="gender"
             rules={[{ required: true, message: "Gender is required!" }]}
@@ -57,6 +61,7 @@ const SecondStepForm = ({ form }) => {
       <Row gutter={32} className="reach-row">
         <Col span={24}>
           <Form.Item
+            className="reach-form-item"
             label="Experience Description"
             name="exp_description"
             rules={[
