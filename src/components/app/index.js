@@ -10,7 +10,7 @@ const MainApp = () => {
         <Route path={"/api"} exact>
           <ApiCallDemo />
         </Route>
-        <Route path={"/jobs"} exact>
+        <Route path={"/jobs"}>
           <Jobs />
         </Route>
         <Redirect from="/" to="/jobs" />
