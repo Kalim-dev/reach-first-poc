@@ -1,0 +1,55 @@
+.third-step {
+  .notes {
+    font-size: 20px;
+  }
+
+  .week-days {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    gap: 48px;
+
+    padding: 0px 0px 40px 0px;
+
+    & > div {
+      //   flex: 1 1 auto;
+      display: flex;
+      background-color: #006ab3;
+      color: white;
+      height: 40px;
+      width: 40px;
+      font-size: 16px;
+      font-weight: bold;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+
+      &.in-active {
+        background-color: #efecec;
+        color: #b1b1b1;
+      }
+    }
+  }
+
+  .time-picker {
+    .ant-form-item-label {
+      background-color: #006ab3;
+      border-radius: 5px;
+      width: 110px;
+
+      label {
+        color: white;
+        padding: 10px;
+        height: unset;
+      }
+    }
+
+    .reach-picker {
+      //   width: 150px;
+      background-color: #e2e2e2;
+      padding: 10px;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+  }
+}
