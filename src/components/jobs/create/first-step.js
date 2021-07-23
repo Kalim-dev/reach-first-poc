@@ -1,14 +1,14 @@
 import { Form, Input, Row, Col } from "antd";
 
-const FirstStepForm = () => {
+const FirstStepForm = ({ form }) => {
   return (
-    <Form name="basic" initialValues={{ remember: true }}>
+    <Form name="basic" initialValues={{ remember: true }} form={form}>
       <Row gutter={32} className="reach-row">
         <Col span={12}>
           <Form.Item
             label="Looking For"
             name="job_title"
-            rules={[{ required: true, message: "JOb title is required" }]}
+            rules={[{ required: true, message: "Job title is required" }]}
           >
             <Input
               className="reach-first-input"
@@ -54,7 +54,7 @@ const FirstStepForm = () => {
         <Col span={24}>
           <Form.Item
             label="Description"
-            name="desciption"
+            name="description"
             rules={[{ required: true, message: "Description is required" }]}
           >
             <Input.TextArea
@@ -67,11 +67,17 @@ const FirstStepForm = () => {
       </Row>
       <Row gutter={32} className="reach-row">
         <Col span={24}>
-          <Form.Item
-            name="template"
-            rules={[{ required: true, message: "Skills required" }]}
-          >
-            <Input type="file" className="file-upload" placeholder="File" />
+          <Form.Item name="template">
+            <Input
+              type="file"
+              className="file-upload"
+              placeholder="File"
+              onChange={(event) => {
+                const [file] = event.target.files;
+                const fileUri = URL.createObjectURL(file);
+                form.setFieldsValue(form, "template", fileUri);
+              }}
+            />
           </Form.Item>
         </Col>
       </Row>

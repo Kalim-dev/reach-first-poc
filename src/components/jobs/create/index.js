@@ -1,24 +1,58 @@
-import { Card, Button } from "antd";
-import { Link, useParams } from "react-router-dom";
+import { Card, Button, Form } from "antd";
+import { setJobStep } from "app-redux/actions/job";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory, useParams } from "react-router-dom";
 import FirstStepForm from "./first-step";
 
 import "./index.scss";
 import SecondStepForm from "./second-step";
 import ThirdStepForm from "./third-step";
 
+const stepsValues = {
+  1: "first",
+  2: "second",
+  3: "third",
+};
+
 const CreateJob = () => {
   const { id } = useParams();
+  const [form] = Form.useForm();
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const [step, setStep] = useState("first");
+  const job = useSelector(({ data }) => data.job);
+
+  useEffect(() => {
+    setStep(stepsValues[id]);
+  }, [id]);
+
+  useEffect(() => {
+    if (step) {
+      form.setFieldsValue(form, job[step]);
+    }
+  }, [step, form, job]);
 
   const renderForm = () => {
     switch (id) {
       case "1":
-        return <FirstStepForm />;
+        return <FirstStepForm form={form} />;
       case "2":
-        return <SecondStepForm />;
+        return <SecondStepForm form={form} />;
       case "3":
-        return <ThirdStepForm />;
+        return <ThirdStepForm form={form} />;
       default:
-        return <FirstStepForm />;
+        return <FirstStepForm form={form} />;
+    }
+  };
+
+  const onSubmit = async () => {
+    try {
+      const values = await form.validateFields();
+      dispatch(setJobStep(values, step));
+      history.push(`/jobs/create/${Number(id) + 1}`);
+    } catch (error) {
+      console.log("Validate Failed:", error);
     }
   };
 
@@ -28,7 +62,7 @@ const CreateJob = () => {
         <div className="right">
           <div className="x-title">create a job post</div>
           <div className="x-note">
-            Complete the folliwng steps to create an effective job post
+            Complete the following steps to create an effective job post
           </div>
         </div>
         <div className="left">X</div>
@@ -51,8 +85,13 @@ const CreateJob = () => {
           <Button size="large" className="card-btn">
             <Link to={`/jobs/create/${Number(id) - 1}`}>PREVIOUS</Link>
           </Button>
-          <Button type="primary" size="large" className="card-btn">
-            <Link to={`/jobs/create/${Number(id) + 1}`}>NEXT</Link>
+          <Button
+            type="primary"
+            size="large"
+            className="card-btn"
+            onClick={onSubmit}
+          >
+            NEXT
           </Button>
         </div>
       </Card>
