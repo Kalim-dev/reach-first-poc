@@ -41,10 +41,6 @@ const ThirdStepForm = ({ form }) => {
             >
               <RangePicker
                 className="reach-picker"
-                defaultValue={[
-                  moment("09:00", format),
-                  moment("05:00", format),
-                ]}
                 separator={"to"}
                 format={format}
               />
@@ -59,10 +55,6 @@ const ThirdStepForm = ({ form }) => {
             >
               <RangePicker
                 className="reach-picker"
-                defaultValue={[
-                  moment("09:00", format),
-                  moment("05:00", format),
-                ]}
                 separator={"to"}
                 format={format}
               />
@@ -79,10 +71,6 @@ const ThirdStepForm = ({ form }) => {
             >
               <RangePicker
                 className="reach-picker"
-                defaultValue={[
-                  moment("09:00", format),
-                  moment("05:00", format),
-                ]}
                 separator={"to"}
                 format={format}
               />
@@ -97,10 +85,6 @@ const ThirdStepForm = ({ form }) => {
             >
               <RangePicker
                 className="reach-picker"
-                defaultValue={[
-                  moment("09:00", format),
-                  moment("05:00", format),
-                ]}
                 separator={"to"}
                 format={format}
               />
@@ -117,10 +101,6 @@ const ThirdStepForm = ({ form }) => {
             >
               <RangePicker
                 className="reach-picker"
-                defaultValue={[
-                  moment("09:00", format),
-                  moment("05:00", format),
-                ]}
                 separator={"to"}
                 format={format}
               />
@@ -135,10 +115,6 @@ const ThirdStepForm = ({ form }) => {
             >
               <RangePicker
                 className="reach-picker"
-                defaultValue={[
-                  moment("09:00", format),
-                  moment("05:00", format),
-                ]}
                 separator={"to"}
                 format={format}
               />
@@ -155,10 +131,6 @@ const ThirdStepForm = ({ form }) => {
             >
               <RangePicker
                 className="reach-picker"
-                defaultValue={[
-                  moment("09:00", format),
-                  moment("05:00", format),
-                ]}
                 separator={"to"}
                 format={format}
               />

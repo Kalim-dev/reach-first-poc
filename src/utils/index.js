@@ -39,4 +39,8 @@ export const columns = [
     dataIndex: "shift_timings",
     key: "shift_timings",
   },
+  {
+    title: "Actions",
+    key: "actions",
+  },
 ];
