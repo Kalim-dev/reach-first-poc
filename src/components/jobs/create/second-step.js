@@ -21,7 +21,7 @@ const SecondStepForm = ({ form }) => {
           <Form.Item
             className="reach-form-item"
             label="Expected Start Date"
-            name="start_date"
+            name="expected_start_date"
             rules={[{ required: true, message: "Start Date is required" }]}
           >
             <Input
@@ -37,7 +37,7 @@ const SecondStepForm = ({ form }) => {
           <Form.Item
             className="reach-form-item"
             label="Career Level"
-            name="career_+level"
+            name="career_level"
             rules={[{ required: true, message: "Career Level is required!" }]}
           >
             <Input
@@ -63,7 +63,7 @@ const SecondStepForm = ({ form }) => {
           <Form.Item
             className="reach-form-item"
             label="Experience Description"
-            name="exp_description"
+            name="equipment_specs"
             rules={[
               { required: true, message: "Experience Description is required" },
             ]}

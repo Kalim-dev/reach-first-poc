@@ -31,10 +31,22 @@ const CreateJob = () => {
   }, [id, history]);
 
   useEffect(() => {
-    if (step) {
-      form.setFieldsValue(form, job[step]);
+    if (step && job[step]) {
+      if (step === "third") {
+        const momentTimes = formatToDates(job[step]);
+        form.setFieldsValue(momentTimes);
+      } else {
+        form.setFieldsValue(job[step]);
+      }
     }
   }, [step, form, job]);
+
+  const formatToDates = (values = {}) => {
+    return Object.keys(values).reduce((sum, key) => {
+      sum[key] = values[key].map((date) => moment(date, "hh:mm"));
+      return sum;
+    }, {});
+  };
 
   const formatTimes = (values) => {
     return Object.keys(values).reduce((sum, key) => {
@@ -63,7 +75,9 @@ const CreateJob = () => {
     return (
       <div className="card-header">
         <div className="right">
-          <div className="x-title">create a job post</div>
+          <div className="x-title">
+            {job.id ? "Update" : "Create"} a job post
+          </div>
           <div className="x-note">
             Complete the following steps to create an effective job post
           </div>
