@@ -4,6 +4,7 @@ import {
   SET_JOB,
   SET_JOB_STEP_ID,
   SET_JOB_DELETE,
+  SET_NOTIFICATION,
 } from "config/constants";
 
 /**
@@ -45,5 +46,11 @@ export const setJobDelete = (id) => {
   return {
     type: SET_JOB_DELETE,
     payload: id,
+  };
+};
+export const setNotifications = (message) => {
+  return {
+    type: SET_NOTIFICATION,
+    payload: message,
   };
 };

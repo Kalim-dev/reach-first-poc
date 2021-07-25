@@ -1,8 +1,27 @@
-import { Form, Input, Row, Col } from "antd";
+import { Form, Input, Row, InputNumber, Col, Select } from "antd";
+
+import { professions, skills } from "utils/lookups";
+
+const { Option } = Select;
+const initialValues = {
+  job_title: "Web Developer",
+  experience: 1,
+  education: "Bachelor ",
+  skills: "Software",
+};
+
+const educations = [
+  "Metric",
+  "Intermediate",
+  "Bachelor",
+  "Master",
+  "MS",
+  "Phd",
+];
 
 const FirstStepForm = ({ form }) => {
   return (
-    <Form name="basic" initialValues={{ remember: true }} form={form}>
+    <Form name="basic" initialValues={initialValues} form={form}>
       <Row gutter={32} className="reach-row">
         <Col span={12}>
           <Form.Item
@@ -11,10 +30,13 @@ const FirstStepForm = ({ form }) => {
             name="job_title"
             rules={[{ required: true, message: "Job title is required" }]}
           >
-            <Input
-              className="reach-first-input"
-              placeholder="Enter Job title"
-            />
+            <Select showSearch placeholder="Search Job Title">
+              {professions.map((profession) => (
+                <Option value={profession} key={profession}>
+                  {profession}
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
         </Col>
         <Col span={12}>
@@ -24,7 +46,12 @@ const FirstStepForm = ({ form }) => {
             name="experience"
             rules={[{ required: true, message: "Experience is required" }]}
           >
-            <Input className="reach-first-input" placeholder="Experience" />
+            <InputNumber
+              className="reach-first-input"
+              min={1}
+              max={40}
+              formatter={(value) => `${value} years`}
+            />
           </Form.Item>
         </Col>
       </Row>
@@ -37,7 +64,13 @@ const FirstStepForm = ({ form }) => {
             name="education"
             rules={[{ required: true, message: "Education is required!" }]}
           >
-            <Input className="reach-first-input" placeholder="Education..." />
+            <Select showSearch placeholder="Search Education">
+              {educations.map((profession) => (
+                <Option value={profession} key={profession}>
+                  {profession}
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
         </Col>
       </Row>
@@ -50,7 +83,13 @@ const FirstStepForm = ({ form }) => {
             name="skills"
             rules={[{ required: true, message: "Skills required" }]}
           >
-            <Input className="reach-first-input" placeholder="Skills" />
+            <Select showSearch placeholder="Search Skills">
+              {skills.map((skil) => (
+                <Option value={skil} key={skil}>
+                  {skil}
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
         </Col>
       </Row>

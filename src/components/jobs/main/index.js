@@ -1,15 +1,35 @@
-import { Button, Card, List, Popover, Table } from "antd";
+import { Button, Card, Input, List, Popover, Table } from "antd";
 import { setJobDelete, setJobStep, setJobStepId } from "app-redux/actions/job";
-import { SET_JOB_DELETE } from "config/constants";
 import { startCase } from "lodash";
+import moment from "moment";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { columns } from "utils";
 
 const JobsMain = () => {
   const jobs = useSelector(({ data }) => data.jobs);
+  const [data, setData] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  useEffect(() => {
+    setData(jobs);
+  }, [jobs]);
+
+  const onChange = (event) => {
+    const { value } = event.target;
+
+    if (value) {
+      const filterData = jobs.slice().filter((item) => {
+        return item.job_title.toLowerCase().includes(value.toLowerCase());
+      });
+
+      setData(filterData);
+    } else {
+      setData(jobs);
+    }
+  };
 
   const onEdit = (record) => {
     const {
@@ -35,7 +55,7 @@ const JobsMain = () => {
     };
     const stepSecondData = {
       hourly_rate,
-      expected_start_date,
+      expected_start_date: moment(expected_start_date),
       career_level,
       gender,
       equipment_specs,
@@ -59,6 +79,12 @@ const JobsMain = () => {
           const shiftData = Object.keys(shifts).map((key) => {
             return { key, value: shifts[key] };
           });
+
+          const getShifttext = (time) => {
+            const [from, to] = time;
+
+            return `${from} to ${to}`;
+          };
           return (
             <Popover
               placement="topLeft"
@@ -67,7 +93,7 @@ const JobsMain = () => {
                 <List
                   dataSource={shiftData}
                   renderItem={(item) => (
-                    <List.Item extra={item.value}>
+                    <List.Item extra={getShifttext(item.value)}>
                       <List.Item.Meta description={startCase(item.key)} />
                     </List.Item>
                   )}
@@ -103,12 +129,15 @@ const JobsMain = () => {
       title="Jobs"
       bordered={false}
       extra={
-        <Link to="/jobs/create">
-          <Button type="link">Create</Button>
-        </Link>
+        <div style={{ display: "flex" }}>
+          <Input placeholder="Search job title" onChange={onChange} />
+          <Link to="/jobs/create">
+            <Button type="link">Create</Button>
+          </Link>
+        </div>
       }
     >
-      <Table dataSource={jobs} columns={getColumns()} size="small" />
+      <Table dataSource={data} columns={getColumns()} size="small" />
     </Card>
   );
 };
