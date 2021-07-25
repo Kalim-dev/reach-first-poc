@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import "./index.scss";
 
-const { Header, Content } = Layout;
+const { Header, Content, Footer } = Layout;
 
 export const MainLayout = ({ children }) => {
   const location = useLocation();
@@ -62,6 +62,9 @@ export const MainLayout = ({ children }) => {
       <Content className="app-content">
         <div className="app-layout">{children}</div>
       </Content>
+      <Footer style={{ textAlign: "center" }}>
+        POC Interview Task created by Kalim Ullah | javascript developer....
+      </Footer>
     </Layout>
   );
 };

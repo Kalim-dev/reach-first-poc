@@ -1,4 +1,5 @@
 import { Drawer, List } from "antd";
+import ApiCallDemo from "components/api-call-demo";
 import MainLayout from "components/common/layout";
 import Jobs from "components/jobs";
 import AppContext from "context";
@@ -16,7 +17,7 @@ const MainApp = () => {
       <MainLayout>
         <Switch>
           <Route path={"/api"} exact>
-            Here show APIS calls componenets
+            <ApiCallDemo />
           </Route>
           <Route path={"/jobs"}>
             <Jobs />
