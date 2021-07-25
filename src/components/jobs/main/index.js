@@ -1,5 +1,6 @@
 import { Button, Card, List, Popover, Table } from "antd";
-import { setJobStep, setJobStepId } from "app-redux/actions/job";
+import { setJobDelete, setJobStep, setJobStepId } from "app-redux/actions/job";
+import { SET_JOB_DELETE } from "config/constants";
 import { startCase } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
@@ -47,6 +48,9 @@ const JobsMain = () => {
     dispatch(setJobStep(stepThirdData, "third"));
     history.push("/jobs/create");
   };
+  const onDelete = (id) => {
+    dispatch(setJobDelete(id));
+  };
 
   const getColumns = () => {
     return columns.map((col) => {
@@ -83,7 +87,7 @@ const JobsMain = () => {
             <Button type="link" onClick={() => onEdit(record)}>
               Edit
             </Button>
-            <Button type="link" danger>
+            <Button type="link" onClick={() => onDelete(record.id)} danger>
               Delete
             </Button>
           </>

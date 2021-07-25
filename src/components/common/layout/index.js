@@ -1,6 +1,6 @@
 import { Layout, Menu } from "antd";
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, Route } from "react-router-dom";
 import "./index.scss";
 
 const { Header, Content, Footer } = Layout;
@@ -32,6 +32,9 @@ export const MainLayout = ({ children }) => {
 
           <Menu.Item key="/api">
             <Link to="/api">APIs</Link>
+          </Menu.Item>
+          <Menu.Item key="/about">
+            <Link to="/about">About Us</Link>
           </Menu.Item>
         </Menu>
       </Header>

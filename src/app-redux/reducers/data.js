@@ -1,6 +1,7 @@
 import {
   RESET_JOB_STEP,
   SET_JOB,
+  SET_JOB_DELETE,
   SET_JOB_STEP,
   SET_JOB_STEP_ID,
 } from "config/constants";
@@ -68,6 +69,11 @@ const dataReducer = (state = initState, action) => {
         ...state,
         jobs: newJobs,
         job: {},
+      };
+    case SET_JOB_DELETE:
+      return {
+        ...state,
+        jobs: state.jobs.filter((item) => item.id !== action.payload),
       };
     default:
       return state;

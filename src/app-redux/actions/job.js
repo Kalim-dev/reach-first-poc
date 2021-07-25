@@ -3,6 +3,7 @@ import {
   RESET_JOB_STEP,
   SET_JOB,
   SET_JOB_STEP_ID,
+  SET_JOB_DELETE,
 } from "config/constants";
 
 /**
@@ -37,6 +38,12 @@ export const setJob = (payload) => {
 export const setJobStepId = (id) => {
   return {
     type: SET_JOB_STEP_ID,
+    payload: id,
+  };
+};
+export const setJobDelete = (id) => {
+  return {
+    type: SET_JOB_DELETE,
     payload: id,
   };
 };

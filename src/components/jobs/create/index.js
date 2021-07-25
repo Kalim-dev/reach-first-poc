@@ -28,7 +28,7 @@ const CreateJob = () => {
 
   useEffect(() => {
     setStep(stepsValues[id]);
-  }, [id, history]);
+  }, [id]);
 
   useEffect(() => {
     if (step && job[step]) {
