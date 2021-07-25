@@ -1,5 +1,5 @@
 import { Card, Button, Form } from "antd";
-import { setJob, setJobStep } from "app-redux/actions/job";
+import { setJob, setJobStep, setNotifications } from "app-redux/actions/job";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Route, Switch, useHistory, useParams } from "react-router-dom";
@@ -61,6 +61,12 @@ const CreateJob = () => {
       if (step === "third") {
         dispatch(setJobStep(formatTimes(values), step));
         dispatch(setJob());
+        const message = `Job has been ${
+          job.id ? "Updated" : "Created"
+        } successfully`;
+
+        dispatch(setNotifications(message));
+
         history.push(`/jobs`);
       } else {
         dispatch(setJobStep(values, step));
@@ -82,7 +88,15 @@ const CreateJob = () => {
             Complete the following steps to create an effective job post
           </div>
         </div>
-        <div className="left">X</div>
+        <div className="left">
+          <Link className="close-icon" to="/jobs">
+            <img
+              alt="Close Icon"
+              width={38}
+              src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjxzdmcgdmlld0JveD0iMCAwIDI0IDI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0aXRsZS8+PHBhdGggZD0iTTEyLDJBMTAsMTAsMCwxLDAsMjIsMTIsMTAsMTAsMCwwLDAsMTIsMlptMy4yMSwxMS43OWExLDEsMCwwLDEsMCwxLjQyLDEsMSwwLDAsMS0xLjQyLDBMMTIsMTMuNDFsLTEuNzksMS44YTEsMSwwLDAsMS0xLjQyLDAsMSwxLDAsMCwxLDAtMS40MkwxMC41OSwxMmwtMS44LTEuNzlhMSwxLDAsMCwxLDEuNDItMS40MkwxMiwxMC41OWwxLjc5LTEuOGExLDEsMCwwLDEsMS40MiwxLjQyTDEzLjQxLDEyWiIgZmlsbD0iIzQ2NDY0NiIvPjwvc3ZnPg=="
+            />
+          </Link>
+        </div>
       </div>
     );
   };

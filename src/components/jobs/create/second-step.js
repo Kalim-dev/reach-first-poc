@@ -1,8 +1,26 @@
-import { Form, Input, Row, Col } from "antd";
+import { Form, Input, InputNumber, DatePicker, Select, Row, Col } from "antd";
+import moment from "moment";
+const { Option } = Select;
+const levels = [
+  "Intern",
+  "Entry Level",
+  "Experienced",
+  "Advanced",
+  "Professional",
+  "Executive",
+];
 
 const SecondStepForm = ({ form }) => {
   return (
-    <Form name="basic" form={form}>
+    <Form
+      name="basic"
+      form={form}
+      initialValues={{
+        hourly_rate: 10,
+        expected_start_date: moment(),
+        gender: "Male",
+      }}
+    >
       <Row gutter={32} className="reach-row">
         <Col span={12}>
           <Form.Item
@@ -11,9 +29,11 @@ const SecondStepForm = ({ form }) => {
             name="hourly_rate"
             rules={[{ required: true, message: "Hourly rate is required" }]}
           >
-            <Input
+            <InputNumber
               className="reach-first-input"
+              min={10}
               placeholder="Enter Hourlt Rate"
+              formatter={(value) => `$${value} /Hour`}
             />
           </Form.Item>
         </Col>
@@ -24,10 +44,7 @@ const SecondStepForm = ({ form }) => {
             name="expected_start_date"
             rules={[{ required: true, message: "Start Date is required" }]}
           >
-            <Input
-              className="reach-first-input"
-              placeholder="Expectd Start Date"
-            />
+            <DatePicker placeholder="Expectd Start Date" />
           </Form.Item>
         </Col>
       </Row>
@@ -40,10 +57,11 @@ const SecondStepForm = ({ form }) => {
             name="career_level"
             rules={[{ required: true, message: "Career Level is required!" }]}
           >
-            <Input
-              className="reach-first-input"
-              placeholder="Career Level..."
-            />
+            <Select showSearch placeholder="Search Career Level">
+              {levels.map((level) => (
+                <Option value={level}>{level}</Option>
+              ))}
+            </Select>
           </Form.Item>
         </Col>
         <Col span={12}>
@@ -53,7 +71,13 @@ const SecondStepForm = ({ form }) => {
             name="gender"
             rules={[{ required: true, message: "Gender is required!" }]}
           >
-            <Input className="reach-first-input" placeholder="Gender..." />
+            <Select placeholder="Select Gender">
+              {["Male", "Female"].map((level) => (
+                <Option value={level} key={level}>
+                  {level}
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
         </Col>
       </Row>

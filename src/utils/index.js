@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const columns = [
   {
     title: "Name",
@@ -23,6 +25,7 @@ export const columns = [
     title: "Start Date",
     dataIndex: "expected_start_date",
     key: "expected_start_date",
+    render: (value) => moment(value).format("LL"),
   },
   {
     title: "Career Level",

@@ -3,6 +3,7 @@ import {
   RESET_JOB_STEP,
   SET_JOB,
   SET_JOB_STEP_ID,
+  SET_NOTIFICATION,
 } from "config/constants";
 
 /**
@@ -38,5 +39,11 @@ export const setJobStepId = (id) => {
   return {
     type: SET_JOB_STEP_ID,
     payload: id,
+  };
+};
+export const setNotifications = (message) => {
+  return {
+    type: SET_NOTIFICATION,
+    payload: message,
   };
 };

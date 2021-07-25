@@ -1,6 +1,7 @@
 import { Button, Card, List, Popover, Table } from "antd";
 import { setJobStep, setJobStepId } from "app-redux/actions/job";
 import { startCase } from "lodash";
+import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { columns } from "utils";
@@ -34,7 +35,7 @@ const JobsMain = () => {
     };
     const stepSecondData = {
       hourly_rate,
-      expected_start_date,
+      expected_start_date: moment(expected_start_date),
       career_level,
       gender,
       equipment_specs,
