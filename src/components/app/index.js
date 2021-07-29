@@ -6,7 +6,7 @@ import AppContext from "context";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
-
+import Counter from "components/counter";
 const MainApp = () => {
   const [showNotification, setShowNotifications] = useState(false);
 
@@ -22,6 +22,10 @@ const MainApp = () => {
           <Route path={"/jobs"}>
             <Jobs />
           </Route>
+          <Route path={"/state"}>
+            <Counter />
+          </Route>
+
           <Redirect from="/" to="/jobs" />
         </Switch>
 
